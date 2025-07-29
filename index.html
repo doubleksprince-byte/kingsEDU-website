@@ -1,37 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Learning Website</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Summary Writing Assessment One</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f8fb;
+      font-size: 18px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1, h2, h3 {
+      text-align: center;
+    }
+    nav {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    nav button {
+      margin: 5px;
+      padding: 10px 15px;
+    }
+    .hidden {
+      display: none;
+    }
+    .question, .paragraph {
+      margin-bottom: 20px;
+    }
+    .paragraph {
+      background-color: #eef6ff;
+      padding: 15px;
+      border-left: 5px solid #007acc;
+      border-radius: 5px;
+      user-select: text;
+    }
+    .highlight-box {
+      display: inline-block;
+      padding: 2px 4px;
+      border-radius: 5px;
+      margin: 2px;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    .main-idea { background-color: #d4b5ff; }
+    .other-info-1 { background-color: #c1f0d6; }
+    .other-info-2 { background-color: #fdf5a6; }
+    .other-info-3 { background-color: #f9c5d1; }
+    .other-info-4 { background-color: #add8e6; }
+    .highlighted {
+      box-shadow: 0 0 8px 3px #ff9800;
+      filter: brightness(1.2);
+    }
+    button {
+      background: #007acc;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+    .result, .name-section {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .name-section input {
+      padding: 5px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+    .icon {
+      font-weight: bold;
+      font-size: 20px;
+    }
+    #leaderboard {
+      margin-top: 20px;
+      display: none;
+      border-top: 2px solid #007acc;
+      padding-top: 10px;
+    }
+    #popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    #popupContent {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to King's Royal Learning Website</h1>
+  <div id="popup">
+    <div id="popupContent">
+      <h2>Welcome to King's Royal Learning Website</h2>
+      <button onclick="closePopup()">Start</button>
+    </div>
+  </div>
+
+  <div class="container">
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Lessons</a>
-      <a href="#">Quizzes</a>
+      <button onclick="showPage('home')">Home</button>
+      <button onclick="showPage('lessons')">Lessons</button>
+      <button onclick="showPage('quizzes')">Quizzes</button>
     </nav>
-  </header>
 
-  <main>
-    <section>
-      <h2>Lesson 1: Introduction to Summary Writing</h2>
-      <p>This lesson will teach you the basics of the Summary.</p>
-    </section>
-  </main>
- <img src="lesson1.jpg" alt="Diagram of Summary layout">
- <section>
-  <h2>Lesson 2: What are the foundational steps to writing a summary?</h2>
-  <p> The acronym MOREFEDS can help you write your summary. It stands for M-Minor details O-Opionions R-Repetition E-Examples F-Figurative Devices E-Expert Opionions D-Dialogue S-Statistics and tells you what to leave out of your summary.</p>
-  <img src="css-example.png" alt="Paragraph sample for summary">
-</section>
+    <div id="home" class="page">
+      <h1>Welcome to the Home Page of King's Royal Lessons</h1>
+    </div>
 
-  <footer>
-    <p>&copy; Mr. King's Learning Hub Website 2023-2025</p>
-  </footer>
-  <script src="script.js"></script>
+    <div id="lessons" class="page hidden">
+      <h2>Technique 1: Finding the Main Idea</h2>
+
+      <h3>Lesson 1</h3>
+      <p>Instructions: Click the plus (+) signs below to learn more about finding the main idea.</p>
+      <p>The main idea tells us what a passage is mostly about. It’s the most important point the author wants to share. The other sentences support or give more information about this idea.</p>
+      <div>
+        <button onclick="showTip(1)">+</button> <span id="tip1"></span><br />
+        <button onclick="showTip(2)">+</button> <span id="tip2"></span><br />
+        <button onclick="showTip(3)">+</button> <span id="tip3"></span>
+      </div>
+      <div id="lesson1Progress"></div>
+
+      <h3>Lesson 2</h3>
+      <p>Instructions: Read the paragraph below and choose the best main idea from the options.</p>
+      <p>Finding the main idea becomes easier when you use this formula: Main Idea = Subject + What the writer says about the subject.</p>
+      <div>
+        <div onclick="checkMC(this, true)" style="background:#eee;padding:10px;margin:5px;cursor:pointer;">A. The main idea is the heart of the paragraph.</div>
+        <div onclick="checkMC(this, false)" style="background:#eee;padding:10px;margin:5px;cursor:pointer;">B. Writers like to use many details.</div>
+        <div onclick="checkMC(this, false)" style="background:#eee;padding:10px;margin:5px;cursor:pointer;">C. Paragraphs can be long or short.</div>
+        <div onclick="checkMC(this, false)" style="background:#eee;padding:10px;margin:5px;cursor:pointer;">D. Subjects are usually interesting.</div>
+      </div>
+      <div id="lesson2Result"></div>
+
+      <h3>Lesson 3</h3>
+      <p>Instructions: Use the slider below to explore five key tips about finding the main idea.</p>
+      <input type="range" min="1" max="5" value="1" id="lesson3Slider" oninput="updateWheel(this.value)">
+      <div id="lesson3Tip"></div>
+      <div id="lesson3Result"></div>
+    </div>
+
+    <div id="quizzes" class="page hidden">
+      <h1>Summary Writing Assessment One</h1>
+      <div class="question">
+        <h2>Instructions</h2>
+        <p>Click on the sentence that you think is the main idea. Then click "Submit Answer".</p>
+        <div class="paragraph" id="text-paragraph">
+          <span class="highlight-box other-info-1" onclick="selectBox(this)">The islands of the Caribbean add the enchantment of adventure...</span>
+          <span class="highlight-box other-info-2" onclick="selectBox(this)">To please the eye there is the lush tropical vegetation...</span>
+          <span class="highlight-box other-info-3" onclick="selectBox(this)">Indeed there is an infinite variety of flora and fauna...</span>
+          <span class="highlight-box other-info-4" onclick="selectBox(this)">One can relax on the magnificent beaches...</span>
+          <span class="highlight-box other-info-2" onclick="selectBox(this)">The food is often exotic, always different...</span>
+          <span class="highlight-box other-info-3" onclick="selectBox(this)">The days and nights of Carnival have become world-famous attractions...</span>
+          <span class="highlight-box other-info-4" onclick="selectBox(this)">These unique musical combinations have developed such sophistication...</span>
+          <span class="highlight-box main-idea" onclick="selectBox(this)">In brief, the Caribbean as a tourist area offers the diversion of a new way of life.</span>
+        </div>
+        <button onclick="submitAnswer()">Submit Answer</button>
+        <button onclick="clearSelection()">Clear Selection</button>
+        <div id="result" class="result"></div>
+        <div class="name-section">
+          <input type="text" id="studentName" placeholder="Enter your name">
+          <button onclick="saveScore()">Save</button>
+          <div id="studentScore"></div>
+          <div style="margin-top:10px;">
+            <input type="password" id="resultsPassword" placeholder="Enter results password">
+            <button onclick="showLeaderboard()">Enter</button>
+          </div>
+          <button onclick="nextCandidate()">Next Candidate</button>
+        </div>
+        <div id="leaderboard">
+          <h3>Leaderboard</h3>
+          <ul id="leaderboardList"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedBox = null;
+    let score = 0;
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+      showPage('home');
+    }
+
+    function showPage(id) {
+      document.querySelectorAll(".page").forEach(page => page.classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+    }
+
+    function selectBox(element) {
+      if (selectedBox) selectedBox.classList.remove("highlighted");
+      selectedBox = element;
+      selectedBox.classList.add("highlighted");
+    }
+
+    function clearSelection() {
+      if (selectedBox) selectedBox.classList.remove("highlighted");
+      selectedBox = null;
+      document.getElementById("result").textContent = "";
+      document.getElementById("studentScore").textContent = "";
+    }
+
+    function submitAnswer() {
+      const correct = "In brief, the Caribbean as a tourist area offers the diversion of a new way of life.";
+      const selectedText = selectedBox ? selectedBox.textContent.trim() : "";
+      score = (selectedText === correct) ? 1 : 0;
+      const icon = score ? "<span class='icon' style='color:green'>&#10004;</span> Correct! 1 out of 1 - 100%." : "<span class='icon' style='color:red'>&#10060;</span> Incorrect. 0 out of 1 - 0%.";
+      if (score) selectedBox.style.backgroundColor = "#a882f5";
+      document.getElementById("result").innerHTML = icon;
+    }
+
+    function saveScore() {
+      const name = document.getElementById("studentName").value.trim();
+      if (!name) return document.getElementById("studentScore").textContent = "Please enter your name to save your score.";
+      localStorage.setItem(name + "_summaryScore", score);
+      document.getElementById("studentScore").textContent = `${name}: ${score} / 1`;
+    }
+
+    function showLeaderboard() {
+      if (document.getElementById("resultsPassword").value.trim() !== "k2599") return;
+      const list = document.getElementById("leaderboardList");
+      list.innerHTML = "";
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.endsWith("_summaryScore")) {
+          const name = key.replace("_summaryScore", "");
+          const score = localStorage.getItem(key);
+          const li = document.createElement("li");
+          li.textContent = `${name}: ${score} / 1`;
+          list.appendChild(li);
+        }
+      }
+      document.getElementById("leaderboard").style.display = "block";
+    }
+
+    function nextCandidate() {
+      document.getElementById("studentName").value = "";
+      document.getElementById("studentScore").textContent = "";
+      clearSelection();
+    }
+
+    function showTip(num) {
+      const tips = [
+        "The main idea is the most important point.",
+        "Supporting details explain the main idea.",
+        "Look at titles and first sentences for clues."
+      ];
+      document.getElementById("tip" + num).innerText = tips[num - 1];
+      if ([1,2,3].every(n => document.getElementById("tip" + n).innerText)) {
+        document.getElementById("lesson1Progress").innerHTML = "<p>3/3 - Great! You have mastered Lesson 1</p><button onclick=\"document.getElementById('lesson2Result').scrollIntoView({behavior: 'smooth'})\">Next Lesson</button>";
+      }
+    }
+
+    function checkMC(elem, isCorrect) {
+      const result = document.getElementById("lesson2Result");
+      elem.parentNode.querySelectorAll("div").forEach(el => el.style.backgroundColor = "#eee");
+      elem.style.backgroundColor = isCorrect ? "#8f8" : "#f88";
+      if (isCorrect) result.innerHTML = "<p>Great! You have mastered Lesson 2</p><button onclick=\"document.getElementById('lesson3Slider').scrollIntoView({behavior: 'smooth'})\">Next Lesson</button>";
+    }
+
+    function updateWheel(value) {
+      const tips = [
+        "Tip 1: Check the first and last sentence.",
+        "Tip 2: Notice repeated words.",
+        "Tip 3: Examples often support the main idea.",
+        "Tip 4: Ask what the author wants you to learn.",
+        "Tip 5: Summarize the passage in one sentence."
+      ];
+      document.getElementById("lesson3Tip").innerText = tips[value - 1];
+      if (value == 5) {
+        document.getElementById("lesson3Result").innerHTML = "<p>Great! You have finished Lesson 3</p><button onclick=\"showPage('quizzes')\">Go to Main Idea Summary Quiz</button>";
+      }
+    }
+  </script>
 </body>
 </html>
