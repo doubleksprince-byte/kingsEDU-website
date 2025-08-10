@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Technique 2: Persuasive Writing Skills</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f8fb;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1, h2, h3 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Technique 2: Persuasive Writing Skills</h1><div></div>
+    <div></div><center><h2>What is Persuasive Writing?</h2></center>
+    <p>Persuasive writing is a form of writing where the author tries to convince the reader to agree with their opinion or take a specific action.</p>
+    <h3>Key Features:</h3>
+<h3>Key Features:</h3>
+<ul>
+  <li>Clear opinion or position</li>
+  <li>Strong reasons and evidence</li>
+  <li>Persuasive language and techniques (e.g., rhetorical questions, emotive words)</li>
+  <li>Logical structure</li>
+</ul> <div></div>
+<h3>Example:</h3>
+<blockquote>
+  "Every student should have less homework. Too much homework causes stress and leaves little time for family or hobbies. Schools should limit homework to help students stay healthy and happy."
+</blockquote>
+    <h3>Practice Activity</h3>
+    <p>Write a short paragraph persuading your school to allow longer lunch breaks. Use at least two persuasive techniques.</p>
+    <textarea rows="5" style="width:100%;" placeholder="Write your persuasive paragraph here..."></textarea>
+    <br><br>
+    <a href="index.html">← Back to Home</a>
+  </div>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PEEL Drag and Drop Game</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    margin: 0;
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .instructions {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  .sentences, .peel-section {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  .sentences {
+    width: 300px;
+  }
+  .sentence {
+    background: #d9edf7;
+    border: 1px solid #31708f;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    cursor: grab;
+  }
+  .peel-section {
+    width: 220px;
+    min-height: 150px;
+    border: 2px dashed #aaa;
+    text-align: center;
+  }
+  .peel-section h3 {
+    margin-top: 0;
+  }
+  .peel-section.over {
+    border-color: #5cb85c;
+    background: #e6ffe6;
+  }
+  #result {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.2em;
+    }
+  #reset1Btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background: #9cf04e;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+  #resetBtn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background: #f0ad4e;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+  #reset1Btn:hover {
+    background: #a4ec1f;}
+  #resetBtn:hover {
+    background: #ec971f;
+  }
+  /* ...existing code... */
+.sentence.incorrect, .peel-section.incorrect {
+  background: #ffd6d6 !important;
+  border-color: #e74c3c !important;
+}
+.sentence.correct, .peel-section.correct {
+  background: #d4edda !important;
+  border-color: #28a745 !important;
+}
+.sentence, .peel-section {
+  transition: background 0.3s, border-color 0.3s;
+}
+/* ...existing code... */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-8px); }
+  80% { transform: translateX(8px); }
+  100% { transform: translateX(0); }
+}
+.peel-section.shake {
+  animation: shake 0.4s;
+}
+.sentence.incorrect, .peel-section.incorrect {
+  background: #ffd6d6 !important;
+  border-color: #e74c3c !important;
+}
+.sentence.correct, .peel-section.correct {
+  background: #d4edda !important;
+  border-color: #28a745 !important;
+}
+.sentence, .peel-section {
+  transition: background 0.3s, border-color 0.3s;
+}
+</style>
+</head>
+<body>
+
+<h1>PEEL Drag and Drop Game</h1>
+<p class="instructions">Drag each sentence into the correct section: <b>Point</b>, <b>Example</b>, <b>Explanation</b>, and <b>Link</b>.</p>
+
+<div class="container">
+  <!-- Sentences List -->
+  <div class="sentences" id="sentences">
+    <div class="sentence" draggable="true" data-category="Point">School uniforms promote equality among students.</div>
+    <div class="sentence" draggable="true" data-category="Example">For instance, when everyone wears the same outfit, there is less pressure to wear expensive brands.</div>
+    <div class="sentence" draggable="true" data-category="Explanation">This helps reduce bullying based on clothing choices and fosters a more inclusive school culture.</div>
+    <div class="sentence" draggable="true" data-category="Link">Therefore, mandatory school uniforms can create a more positive and focused learning environment.</div>
+  </div>
+
+  <!-- PEEL Sections -->
+  <div class="peel-section" data-category="Point">
+    <h3>Point</h3>
+  </div>
+  <div class="peel-section" data-category="Example">
+    <h3>Example</h3>
+  </div>
+  <div class="peel-section" data-category="Explanation">
+    <h3>Explanation</h3>
+  </div>
+  <div class="peel-section" data-category="Link">
+    <h3>Link</h3>
+  </div>
+</div>
+<div id="dragDropFeedback" style="font-weight:bold; margin-top:10px; text-align:center;"></div><div id="result"></div>
+<button id="reset1Btn">🔄 Reset Game</button>
+
+
+
+<script>
+  const sentencesContainer = document.getElementById('sentences');
+  const sentences = document.querySelectorAll('.sentence');
+  const sections = document.querySelectorAll('.peel-section');
+  const result = document.getElementById('result');
+  let correctCount = 0;
+
+  sentences.forEach(sentence => {
+    sentence.addEventListener('dragstart', dragStart);
+  });
+
+  sections.forEach(section => {
+    section.addEventListener('dragover', dragOver);
+    section.addEventListener('dragenter', dragEnter);
+    section.addEventListener('dragleave', dragLeave);
+    section.addEventListener('drop', drop);
+  });
+
+  function dragStart(e) {
+    e.dataTransfer.setData('text/plain', e.target.dataset.category + '|' + e.target.innerText);
+    setTimeout(() => {
+      e.target.style.display = 'none';
+    }, 0);
+  }
+
+  function dragOver(e) {
+    e.preventDefault();
+  }
+
+  function dragEnter(e) {
+    e.preventDefault();
+    e.target.classList.add('over');
+  }
+
+  function dragLeave(e) {
+    e.target.classList.remove('over');
+  }
+
+function drop(e) {
+  e.preventDefault();
+  e.target.classList.remove('over');
+
+  let data = e.dataTransfer.getData('text/plain').split('|');
+  let category = data[0];
+  let text = data[1];
+
+  // Find the dragged sentence element
+  let draggedSentence = Array.from(document.querySelectorAll('.sentence')).find(
+    s => s.innerText === text && s.dataset.category === category
+  );
+
+  // Remove previous feedback classes
+  e.currentTarget.classList.remove('incorrect', 'correct', 'shake');
+  if (draggedSentence) draggedSentence.classList.remove('incorrect', 'correct');
+
+  // Always allow the drop
+  let newSentence = document.createElement('div');
+  newSentence.className = 'sentence';
+  newSentence.textContent = text;
+  newSentence.setAttribute('draggable', 'true');
+  newSentence.dataset.category = category;
+  e.currentTarget.appendChild(newSentence);
+  if (draggedSentence) draggedSentence.remove();
+
+  // Visual feedback only
+  if (e.currentTarget.dataset.category === category) {
+    newSentence.classList.add('correct');
+    e.currentTarget.classList.add('correct');
+  } else {
+    newSentence.classList.add('incorrect');
+    e.currentTarget.classList.add('incorrect', 'shake');
+    setTimeout(() => {
+      newSentence.classList.remove('incorrect');
+      e.currentTarget.classList.remove('incorrect', 'shake');
+    }, 1000);
+  }
+
+  // After each drop, check if all sentences have been sorted
+  const feedback = document.getElementById('dragDropFeedback');
+  const remaining = sentencesContainer.querySelectorAll('.sentence').length;
+  if (remaining === 0) {
+    // Check if all are correct
+    let allCorrect = true;
+    document.querySelectorAll('.peel-section').forEach(section => {
+      const sent = section.querySelector('.sentence');
+      if (!sent || sent.dataset.category !== section.dataset.category) {
+        allCorrect = false;
+      }
+    });
+    if (allCorrect) {
+      feedback.textContent = "✅ Congratulations 🎉 Excellent work! You sorted all parts correctly!";
+      feedback.style.color = "green";
+    } else {
+      feedback.textContent = "❌ Incorrect, some items are not sorted correctly in your submission, try again!";
+      feedback.style.color = "red";
+    }
+  } else {
+    feedback.textContent = "";
+  }
+}
+  // Reset game
+  document.getElementById('reset1Btn').addEventListener('click', () => {
+    correctCount = 0;
+    result.textContent = "";
+    sentencesContainer.innerHTML = `
+      <div class="sentence" draggable="true" data-category="Point">School uniforms promote equality among students.</div>
+      <div class="sentence" draggable="true" data-category="Example">For instance, when everyone wears the same outfit, there is less pressure to wear expensive brands.</div>
+      <div class="sentence" draggable="true" data-category="Explanation">This helps reduce bullying based on clothing choices and fosters a more inclusive school culture.</div>
+      <div class="sentence" draggable="true" data-category="Link">Therefore, mandatory school uniforms can create a more positive and focused learning environment.</div>
+    `;
+    sections.forEach(section => {
+      section.innerHTML = `<h3>${section.dataset.category}</h3>`;
+    });
+    document.querySelectorAll('.sentence').forEach(sentence => {
+      sentence.addEventListener('dragstart', dragStart);
+    });
+  });
+</script>
+<!-- Difference between Persuasive and Argumentative Writing -->
+<div style="margin-top:40px;">
+  <h2>Difference between Persuasive Writing and Argumentative Writing</h2>
+  <table style="width:100%; border-collapse:collapse; margin: 0 auto;">
+    <tr style="background:#f4f8fb;">
+      <th style="padding:10px; border:1px solid #ccc;">Persuasive Writing</th>
+      <th style="padding:10px; border:1px solid #ccc;">Argumentative Writing</th>
+    </tr>
+    <tr>
+      <td style="padding:10px; border:1px solid #ccc;">
+        <ul style="text-align:left;">
+          <li>Focuses on convincing the reader to adopt a particular point of view or take action.</li>
+          <li>Uses emotional appeals and personal opinions.</li>
+          <li>May not always present opposing viewpoints.</li>
+          <li>Relies on persuasive techniques and emotive language.</li>
+        </ul>
+      </td>
+      <td style="padding:10px; border:1px solid #ccc;">
+        <ul style="text-align:left;">
+          <li>Presents a balanced view on a topic, considering multiple sides.</li>
+          <li>Uses logic, evidence, and facts to support claims.</li>
+          <li>Addresses and refutes opposing arguments.</li>
+          <li>Focuses on rational appeals and structured reasoning.</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</div>
+<div style="margin-top:40px;">
+  <h2>Sketch Your Ideas (Whiteboard)</h2>
+  <canvas id="whiteboard" width="900" height="500" style="border:1px solid #ccc; background:#fff; display:block; margin:0 auto;"></canvas>
+  <button onclick="convertSketchToText()" style="margin:10px auto; display:block;">Convert Sketch to Text</button>
+  <div id="sketchText" style="margin-top:10px; text-align:center; font-style:italic;"></div>
+</div>
+<!-- Tesseract.js for OCR -->
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script>
+  // Simple whiteboard drawing
+  const canvas = document.getElementById('whiteboard');
+  const ctx = canvas.getContext('2d');
+  let drawing = false;
+
+  canvas.addEventListener('mousedown', e => {
+    drawing = true;
+    ctx.beginPath();
+    ctx.moveTo(e.offsetX, e.offsetY);
+  });
+  canvas.addEventListener('mousemove', e => {
+    if (drawing) {
+      ctx.lineTo(e.offsetX, e.offsetY);
+      ctx.stroke();
+    }
+  });
+  canvas.addEventListener('mouseup', () => drawing = false);
+  canvas.addEventListener('mouseleave', () => drawing = false);
+
+  function convertSketchToText() {
+    document.getElementById('sketchText').textContent = "Recognizing text...";
+    Tesseract.recognize(
+      canvas,
+      'eng',
+      { logger: m => {} }
+    ).then(({ data: { text } }) => {
+      document.getElementById('sketchText').textContent = text.trim() ? "Recognized: " + text : "No text recognized. Try writing more clearly!";
+    });
+  }
+</script>
+</div>
+</body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Auto Grader — Argument Essay (Face-to-Face vs Online)</title>
+<style>
+  :root{
+    --bg:#ffffff; --muted:#6b7280; --accent:#0f172a;
+    --card:#fbfbfd; --border:#e6e7eb; --good:#10b981; --bad:#ef4444;
+  }
+  body{font-family:system-ui, "Segoe UI", Roboto, Arial; max-width:920px;margin:28px auto;padding:14px;background:var(--bg);color:var(--accent);}
+  h1{font-size:20px;margin-bottom:6px;}
+  .small{font-size:13px;color:var(--muted)}
+  textarea{width:100%;height:220px;padding:12px;font-size:14px;line-height:1.45;border-radius:8px;border:1px solid var(--border);box-sizing:border-box;resize:vertical;}
+  button{padding:10px 14px;margin:10px 8px 10px 0;border-radius:8px;border:1px solid #cfcfd4;background:#f7f8fa;cursor:pointer;}
+  .result{margin-top:16px;padding:14px;border-radius:10px;background:var(--card);border:1px solid var(--border);}
+  .score{font-weight:700;font-size:18px;margin-bottom:6px}
+  .match-list{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;}
+  .col{min-width:240px;flex:1}
+  .matched{color:var(--good)}
+  .missing{color:var(--bad)}
+  ul{margin:6px 0 0 16px;padding:0}
+  li{margin:6px 0}
+  .meta{font-size:13px;color:var(--muted);margin-top:6px}
+  .ai-list{margin-top:8px;padding:8px;border-radius:8px;background:#fff7ed;border:1px solid #ffedd5}
+  .tag{display:inline-block;padding:4px 8px;border-radius:999px;background:#eef2ff;color:#1e3a8a;font-size:12px;margin-right:6px}
+  .band-label{font-weight:600;margin-left:6px;color:#1f2937}
+</style>
+</head>
+<body>
+  <h1>Persuasive Essay-Grader </h1>
+  <p class="large">Prompt: "Face-to-face class is better than online class" <p></p><div></div> <p class="small"><Type a 250–300 word argumentative essay giving your views on the statement above— <div></div>You may paste the text from the sketched from above essay below in the box (250–300 words recommended) for this May/June 2025 CSEC question and then when you are done click <strong>Grade</strong>.</p>
+
+  <textarea id="essay" placeholder="Type or Paste your essay here..."></textarea>
+  <div>
+    <button id="gradeBtn">Grade</button>
+    <button id="resetBtn">Reset</button>
+  </div>
+
+  <div id="output" class="result" style="display:none;">
+    <div id="bandLine" class="score"></div>
+    <div id="totalLine" class="small"></div>
+    <div style="margin-top:8px;">
+      <strong>Breakdown (reference only):</strong>
+      <div class="meta">Content <span id="contentScore"></span>/10 | Organisation <span id="orgScore"></span>/5 | Language <span id="langScore"></span>/10</div>
+    </div>
+
+    <div class="match-list">
+      <div class="col">
+        <strong>Content matches</strong>
+        <ul id="contentMatches"></ul>
+      </div>
+      <div class="col">
+        <strong>Organisation matches</strong>
+        <ul id="orgMatches"></ul>
+      </div>
+      <div class="col">
+        <strong>Language matches</strong>
+        <ul id="langMatches"></ul>
+      </div>
+    </div>
+
+    <div style="margin-top:12px;">
+      <strong>Missing / suggested items</strong>
+      <div id="missingSuggestions" class="small"></div>
+    </div>
+
+    <div style="margin-top:12px;">
+      <strong>AI telltale phrases (penalties applied)</strong>
+      <div id="aiTelltales" class="ai-list small"></div>
+    </div>
+
+    <div style="margin-top:12px;">
+      <strong>Score details</strong>
+      <div class="small" id="scoreDetails"></div>
+    </div>
+  </div>
+
+<script>
+(() => {
+  // --- Updated keyword lists (realistic) ---
+  const contentPhrases = [
+    {key:'in-person', label:'in-person'},
+    {key:'face to face', label:'face to face'},
+    {key:'interaction', label:'interaction'},
+    {key:'body language', label:'body language'},
+    {key:'immediate feedback', label:'immediate feedback'},
+    {key:'social skills', label:'social skills'},
+    {key:'motivation', label:'motivation'},
+    {key:'engagement', label:'engagement'},
+    {key:'collaboration', label:'collaboration'},
+    {key:'distractions', label:'distractions'},
+    {key:'discipline', label:'discipline'},
+    {key:'learning environment', label:'learning environment'},
+    {key:'teacher support', label:'teacher support'},
+    {key:'peer support', label:'peer support'},
+    {key:'academic performance', label:'academic performance'},
+    {key:'communication', label:'communication'},
+    {key:'flexibility', label:'flexibility'},
+    {key:'technology', label:'technology'},
+    {key:'internet issues', label:'internet issues'},
+    {key:'education', label:'education'},
+    {key:'educational', label:'educational'},
+    {key:'online', label:'online'},
+    {key:'personalized', label:'personalized'},
+    {key:'traditional', label:'traditional'}
+  ];
+
+  const langPhrases = [
+    {key:'classroom', label:'classroom'},
+    {key:'virtual', label:'virtual'},
+    {key:'hybrid learning', label:'hybrid learning'},
+    {key:'screen time', label:'screen time'},
+    {key:'synchronous', label:'synchronous'},
+    {key:'asynchronous', label:'asynchronous'},
+    {key:'digital literacy', label:'digital literacy'},
+    {key:'face-to-face', label:'face-to-face'},
+    {key:'interaction', label:'interaction'},
+    {key:'collaboration', label:'collaboration'},
+    {key:'motivation', label:'motivation'},
+    {key:'self-paced', label:'self-paced'},
+    {key:',', label:','},
+    {key:'engagement', label:'engagement'},
+    {key:'social presence', label:'social presence'},
+    {key:'feedback', label:'feedback'},
+    {key:'learning outcomes', label:'learning outcomes'},
+    {key:'connectivity', label:'connectivity'},
+    {key:'participation', label:'participation'}
+  ];
+
+  const orgPhrases = [
+    {key:'introduction', label:'introduction'},
+    {key:'topic sentence', label:'topic sentence'},
+    {key:'paragraph', label:'paragraph'},
+    {key:'logical order', label:'logical order'},
+    {key:'linking words', label:'linking words'},
+    {key:'transitions', label:'transitions'},
+    {key:'firstly', label:'firstly'},
+    {key:'in conclusion', label:'in conclusion'},
+    {key:'on the other hand', label:'on the other hand'},
+    {key:'and', label:'and'},
+    {key:'furthermore', label:'furthermore'}
+  ];
+
+  // AI telltale phrases that cause -1 penalty per occurrence
+  const aiTelltalePhrases = [
+    'as an ai','as a language model','this paper argues',
+    'the purpose of this essay seeks to demonstrate','it is important to note','evidence shows',
+    'research shows us','On the one hand,','in this essay we will be, it will be evident that','It is important to note that…', 'It should be noted that…', 'This highlights the fact that…','elucidates', 'flexibility', 'GPT','misconceptions', 'counterbalanced','retention','landscape','accountability','Ultimately', 'exemplifies',
+ 'Without a doubt', 'Remarkable',  'Pivotal',  'On the one hand… on the other hand…', 'While it may be true that… it is also important to consider…'
+
+  ];
+
+  // normalize helper
+  function norm(s){ return (s||'').toLowerCase(); }
+
+  // return found labels and missing labels
+  function findMatches(text, phrases){
+    const low = norm(text);
+    const found = [], missing = [];
+    for(const p of phrases){
+      if(low.includes(p.key)) found.push(p.label);
+      else missing.push(p.label);
+    }
+    return {found, missing, score: found.length};
+  }
+
+  // count AI telltales
+  function countAi(text, tells){
+    const low = norm(text);
+    let counts = {}, total = 0;
+    for(const t of tells){
+      let c = low.split(t).length - 1;
+      if(c > 0){ counts[t] = c; total += c; }
+    }
+    return {counts, total};
+  }
+
+  // final band mapping by numeric 1-25 score (keeps prior labels)
+  function bandFromScore(n){
+    if(n >= 25) return 'Outstanding';
+    if(n >= 22) return 'Excellent';
+    if(n >= 19) return 'Very Good';
+    if(n >= 15) return 'Good';
+    if(n >= 10) return 'Satisfactory';
+    if(n >= 4) return 'Unsatisfactory';
+    return 'Poor attempt';
+  }
+
+  // fallback band mapping by word count (same as before)
+  function bandFromWords(n){
+    if(n <= 25) return 'Poor attempt';
+    if(n <= 50) return 'Unsatisfactory';
+    if(n <= 129) return 'Satisfactory';
+    if(n <= 199) return 'Good';
+    if(n <= 239) return 'Very Good';
+    if(n <= 249) return 'Excellent';
+    return 'Outstanding';
+  }
+
+  // Category band thresholds (fractions)
+  const thresholds = {
+    content: { high: 0.60, mid: 0.20, AverageLevel: 0.15},      // lenient
+    language: { high: 0.65, mid: 0.20, AverageLevel: 0.25 },     // moderate
+    organisation: { high: 0.70, mid: 0.60, AverageLevel: 0.45 }  // strict
+  };
+
+  // Map category band -> contribution to 25-point scale
+  function contributionFromBand(category, bandName){
+    // category: 'content'|'language'|'organisation'
+    // bandName: 'High'|'Mid'|'AverageLevel'|'Low'|'None'
+    if(category === 'content'){
+      if(bandName === 'High') return 10;
+      if(bandName === 'Mid') return 8;
+         if(bandName === 'AverageLevel') return 6;
+      if(bandName === 'Low') return 3;
+      return 0;
+    }
+    if(category === 'language'){
+      if(bandName === 'High') return 10;
+      if(bandName === 'Mid') return 7;
+      if(bandName === 'AverageLevel') return 5;
+      if(bandName === 'Low') return 3;
+      return 0;
+    }
+    if(category === 'organisation'){
+      if(bandName === 'High') return 5;
+      if(bandName === 'Mid') return 4;
+   if(bandName === 'AverageLevel') return 3;
+      if(bandName === 'Low') return 1;
+      return 0;
+    }
+    return 0;
+  }
+
+  // determine category band by thresholds
+  function categoryBand(count, total, category){
+    if(total === 0) return 'None';
+    const frac = count / total;
+    const t = thresholds[category];
+    if(frac >= t.high) return 'High';
+    if(frac >= t.mid) return 'Mid';
+     if(frac >= t.AverageLevel) return 'AverageLevel';
+    if(frac > 0) return 'Low';
+    return 'None';
+  }
+
+  // UI elements
+  const essayEl = document.getElementById('essay');
+  const gradeBtn = document.getElementById('gradeBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const output = document.getElementById('output');
+  const bandLine = document.getElementById('bandLine');
+  const totalLine = document.getElementById('totalLine');
+  const contentScoreEl = document.getElementById('contentScore');
+  const orgScoreEl = document.getElementById('orgScore');
+  const langScoreEl = document.getElementById('langScore');
+  const contentMatchesEl = document.getElementById('contentMatches');
+  const orgMatchesEl = document.getElementById('orgMatches');
+  const langMatchesEl = document.getElementById('langMatches');
+  const missingSuggestions = document.getElementById('missingSuggestions');
+  const aiTelltalesEl = document.getElementById('aiTelltales');
+  const scoreDetails = document.getElementById('scoreDetails');
+
+  gradeBtn.addEventListener('click', () => {
+    const text = essayEl.value || '';
+    const words = text.trim().split(/\s+/).filter(Boolean).length;
+
+    // find matches
+    const c = findMatches(text, contentPhrases);
+    const o = findMatches(text, orgPhrases);
+    const l = findMatches(text, langPhrases);
+
+    // counts & percentages
+    const contentCount = c.score;
+    const contentTotal = contentPhrases.length;
+    const contentFrac = contentTotal ? (contentCount / contentTotal) : 0;
+    const contentBand = categoryBand(contentCount, contentTotal, 'content');
+
+    const langCount = l.score;
+    const langTotal = langPhrases.length;
+    const langFrac = langTotal ? (langCount / langTotal) : 0;
+    const langBand = categoryBand(langCount, langTotal, 'language');
+
+    const orgCount = o.score;
+    const orgTotal = orgPhrases.length;
+    const orgFrac = orgTotal ? (orgCount / orgTotal) : 0;
+    const orgBand = categoryBand(orgCount, orgTotal, 'organisation');
+
+    // contributions based on band (maps to 25-point scale)
+    const contentContribution = contributionFromBand('content', contentBand);
+    const langContribution = contributionFromBand('language', langBand);
+    const orgContribution = contributionFromBand('organisation', orgBand);
+
+    // For UI we show these contributions as the "Content /10", "Org /5", "Lang /10"
+    const displayContentScore = contentContribution;
+    const displayOrgScore = orgContribution;
+    const displayLangScore = langContribution;
+
+    // collect unique keyword matches across all categories (for additional diagnostics)
+    const uniqueFound = new Set([...c.found, ...o.found, ...l.found]);
+    let keywordCount = uniqueFound.size;
+
+    // AI telltale detection & penalty
+    const aiInfo = countAi(text, aiTelltalePhrases);
+    const aiPenalty = aiInfo.total;
+
+    let finalScore, band;
+    if(keywordCount === 0){
+      // No keywords -> default to band by word count and representative score mapping
+      band = bandFromWords(words);
+      const reps = { 'Poor attempt':1,'Unsatisfactory':6,'Satisfactory':12,'Good':17,'Very Good':21,'Excellent':23,'Outstanding':25 };
+      finalScore = reps[band];
+    } else {
+      // Sum contributions to create a 0..25 score, then apply AI penalty
+      let base = contentContribution + langContribution + orgContribution;
+      // cap base at 25
+      if(base > 25) base = 25;
+      let adjusted = base - aiPenalty;
+      if(adjusted < 1) adjusted = 1;
+      finalScore = adjusted;
+      band = bandFromScore(finalScore);
+    }
+
+    // Show the UI
+    output.style.display = 'block';
+    bandLine.textContent = `${band} — ${finalScore} / 25`;
+    totalLine.textContent = `Method: ${keywordCount===0 ? 'Word-count (no keywords found)' : 'Category-threshold (keywords + AI penalties)'} · Word count: ${words}`;
+
+    // Display the contribution scores in the breakdown (as numbers)
+    contentScoreEl.textContent = `${displayContentScore}`; // /10
+    orgScoreEl.textContent = `${displayOrgScore}`; // /5
+    langScoreEl.textContent = `${displayLangScore}`; // /10
+
+    // matched lists (reference)
+    contentMatchesEl.innerHTML = c.found.length ? c.found.map(x=>`<li class="matched">${x}</li>`).join('') : '<li class="small">None</li>';
+    orgMatchesEl.innerHTML = o.found.length ? o.found.map(x=>`<li class="matched">${x}</li>`).join('') : '<li class="small">None</li>';
+    langMatchesEl.innerHTML = l.found.length ? l.found.map(x=>`<li class="matched">${x}</li>`).join('') : '<li class="small">None</li>';
+
+    // missing suggestions
+    const missingAll = [...c.missing, ...o.missing, ...l.missing];
+    missingSuggestions.innerHTML = missingAll.length ?
+      'Missing items (suggest student include any of these to increase score):<ul style="margin:6px 0 0 16px;">' +
+      missingAll.map(m=>`<li class="missing">${m}</li>`).join('') + '</ul>' :
+      '<span class="small">None — great!</span>';
+
+    // AI telltales display
+    if(Object.keys(aiInfo.counts).length){
+      const rows = Object.entries(aiInfo.counts).map(([k,v]) => `<div><strong>${v}</strong> × <span style="font-weight:600">${k}</span></div>`).join('');
+      aiTelltalesEl.innerHTML = `<div style="margin-bottom:6px;">Found ${aiInfo.total} telltale phrase(s). Each occurrence subtracts 1 point from the band score.</div>${rows}`;
+    } else {
+      aiTelltalesEl.innerHTML = '<div class="small">No AI telltale phrases detected.</div>';
+    }
+
+    // Score details: show counts, percentages, bands, contributions, penalties
+    const detailLines = [];
+    detailLines.push(`<strong>Content</strong>: ${contentCount}/${contentTotal} matches (${(contentFrac*100).toFixed(1)}%) → Band: <span class="band-label">${contentBand}</span> → Contribution: ${contentContribution}/10`);
+    detailLines.push(`<strong>Language</strong>: ${langCount}/${langTotal} matches (${(langFrac*100).toFixed(1)}%) → Band: <span class="band-label">${langBand}</span> → Contribution: ${langContribution}/10`);
+    detailLines.push(`<strong>Organisation</strong>: ${orgCount}/${orgTotal} matches (${(orgFrac*100).toFixed(1)}%) → Band: <span class="band-label">${orgBand}</span> → Contribution: ${orgContribution}/5`);
+    if(keywordCount === 0){
+      detailLines.push(`No keywords detected in any category → band defaulted using word count → <strong>${band}</strong> (representative score ${finalScore}/25).`);
+    } else {
+      detailLines.push(`Unique keywords found (all categories): ${keywordCount}. Base contributions sum: ${contentContribution + langContribution + orgContribution}/25.`);
+      detailLines.push(`AI telltale penalty: -${aiPenalty}. Final adjusted score: <strong>${finalScore}/25</strong> → ${band}.`);
+    }
+
+    scoreDetails.innerHTML = detailLines.map(l=>`<div class="small" style="margin-top:4px">${l}</div>`).join('');
+
+  });
+
+  resetBtn.addEventListener('click', () => {
+    essayEl.value = '';
+    output.style.display = 'none';
+  });
+})();
+</script>
+</body>
+</html>

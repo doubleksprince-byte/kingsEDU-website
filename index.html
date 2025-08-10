@@ -5,11 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Summary Writing Assessment One</title>
   <style>
+    .dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropbtn {
+  background: #2677e0;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f4f8fb;
+  min-width: 250px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  z-index: 1;
+  text-align: left;
+}
+
+.dropdown-content a {
+  color: #241e25;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: block;
+  font-weight: bold;
+}
+
+.dropdown-content a:hover {
+  background-color: #6795c7;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
       background-color: #f4f8fb;
-      font-size: 18px;
+      font-size: 21px;
     }
     .container {
       max-width: 900px;
@@ -25,6 +65,15 @@
     nav {
       margin-bottom: 20px;
       text-align: center;
+      nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* space between buttons */
+}
+nav .dropdown {
+  margin: 0 10px;
+}
     }
     nav button {
       margin: 5px;
@@ -107,62 +156,36 @@
       text-align: center;
     }
   </style>
-</head>
-<body>
+
   <div id="popup">
     <div id="popupContent">
+      <div style="font-size: 28px; font-weight: bold; color: #007acc;"></div>
       <h2>Welcome to King's Royal Learning Website</h2>
       <button onclick="closePopup()">Start</button>
     </div>
   </div>
 
   <div class="container">
-    <nav>
-      <button onclick="showPage('home')">Home</button>
-      <button onclick="showPage('lessons')">Lessons</button>
-      <button onclick="showPage('quizzes')">Quizzes</button>
-    </nav>
-
-    <div id="home" class="page">
-      <h1>Welcome to the Home Page of King's Royal Lessons</h1>
+   <nav>
+  <button onclick="showPage('home')">Home</button>
+  <div class="dropdown">
+    <button class="dropbtn">Lessons</button>
+    <div class="dropdown-content">
+      <a href="#" onclick="showPage('lessons')">Summary Skills</a>
+      <a href="technique2.html" target="_blank">Persuasive Writing Skills</a>
+      <a href="comprehension.html" target="_blank">Comprehension Tasks</a>
     </div>
-
-    <div id="lessons" class="page hidden">
-      <h2>Technique 1: Finding the Main Idea</h2>
-
-      <h3>Lesson 1</h3>
-      <p>Instructions: Click the plus (+) signs below to learn more about finding the main idea.</p>
-      <p>The main idea tells us what a passage is mostly about. It’s the most important point the author wants to share. The other sentences support or give more information about this idea.</p>
-      <div>
-        <button onclick="showTip(1)">+</button> <span id="tip1"></span><br />
-        <button onclick="showTip(2)">+</button> <span id="tip2"></span><br />
-        <button onclick="showTip(3)">+</button> <span id="tip3"></span>
-      </div>
-      <div id="lesson1Progress"></div>
-
-      <h3>Lesson 2</h3>
-      <p>Instructions: Read the paragraph below and choose the best main idea from the options.</p>
-      <p>Finding the main idea becomes easier when you use this formula: Main Idea = Subject + What the writer says about the subject.</p>
-      <div>
-        <div onclick="checkMC(this, true)" style="background:#eee;padding:10px;margin:5px;cursor:pointer;">A. The main idea is the heart of the paragraph.</div>
-        <div onclick="checkMC(this, false)" style="background:#eee;padding:10px;margin:5px;cursor:pointer;">B. Writers like to use many details.</div>
-        <div onclick="checkMC(this, false)" style="background:#eee;padding:10px;margin:5px;cursor:pointer;">C. Paragraphs can be long or short.</div>
-        <div onclick="checkMC(this, false)" style="background:#eee;padding:10px;margin:5px;cursor:pointer;">D. Subjects are usually interesting.</div>
-      </div>
-      <div id="lesson2Result"></div>
-
-      <h3>Lesson 3</h3>
-      <p>Instructions: Use the slider below to explore five key tips about finding the main idea.</p>
-      <input type="range" min="1" max="5" value="1" id="lesson3Slider" oninput="updateWheel(this.value)">
-      <div id="lesson3Tip"></div>
-      <div id="lesson3Result"></div>
-    </div>
-
-    <div id="quizzes" class="page hidden">
+  </div>
+  <button onclick="showPage('quizzes')">Quizzes</button>
+</nav>
+<div id="quizzes" class="page hidden">
       <h1>Summary Writing Assessment One</h1>
       <div class="question">
         <h2>Instructions</h2>
         <p>Click on the sentence that you think is the main idea. Then click "Submit Answer".</p>
+         <div class="name-section">
+          <input type="text" id="studentName" placeholder="Enter your name"><br>
+          <button onclick="saveScore()">Save</button><br><br>
         <div class="paragraph" id="text-paragraph">
           <span class="highlight-box other-info-1" onclick="selectBox(this)">The islands of the Caribbean add the enchantment of adventure...</span>
           <span class="highlight-box other-info-2" onclick="selectBox(this)">To please the eye there is the lush tropical vegetation...</span>
@@ -176,9 +199,7 @@
         <button onclick="submitAnswer()">Submit Answer</button>
         <button onclick="clearSelection()">Clear Selection</button>
         <div id="result" class="result"></div>
-        <div class="name-section">
-          <input type="text" id="studentName" placeholder="Enter your name">
-          <button onclick="saveScore()">Save</button>
+      
           <div id="studentScore"></div>
           <div style="margin-top:10px;">
             <input type="password" id="resultsPassword" placeholder="Enter results password">
@@ -262,9 +283,9 @@
 
     function showTip(num) {
       const tips = [
-        "The main idea is the most important point.",
-        "Supporting details explain the main idea.",
-        "Look at titles and first sentences for clues."
+        "(Tip 1:The main idea is the most important point.)",
+        "(Tip 2:Supporting details explain the main idea.)",
+        "(Tip 3: Look at titles and first sentences for clues)."
       ];
       document.getElementById("tip" + num).innerText = tips[num - 1];
       if ([1,2,3].every(n => document.getElementById("tip" + n).innerText)) {
@@ -295,3 +316,1124 @@
   </script>
 </body>
 </html>
+
+    <div id="home" class="page">
+      
+      <h2>Welcome to the Home Page of King's Royal Lessons</h2>
+    </div>
+
+    <div id="lessons" class="page hidden">
+      <div style="font-size: 28px; font-weight: bold; color: #007acc;"></div>
+      <h2>Technique 1: Finding the Main Idea</h2>
+
+      <h3>Lesson 1</h3>
+      <br>
+      <div class="paragraph">
+        <p>Read the following praragraph below, note where the highligted text is in this passage. <br><br>The main idea of the passage is highlighted below in the text. Finding the main idea, is very important in Summary Writing as a technique. If you notice where the main idea is in this passage below. This shows that though the main idea is often found at the start or the ending of texts; that is not always the case and it is still important to survey the text to ensure that the main idea you have selected captures the essence of what the entire passage is about.</p><br>
+  <strong>Example: The Impact of Artificial Intelligence on Jobs</strong><br /><br />
+  Artificial Intelligence (AI) is transforming workplaces and automating many tasks that people used to do. 
+  <span While this creates efficiency,  class="highlight-box" style="background-color: skyblue;">AI is significantly changing job roles and even eliminating some traditional positions.</span> 
+  As a result, workers need to adapt by learning new skills. Companies are also reshaping their hiring practices and training programs to match these changes.
+</div>
+
+      <p>Instructions: Click the plus (+) signs below to learn more about finding the main idea.</p>
+      <p>The main idea tells us what a passage is mostly about. <button onclick="showTip(1)">+</button> <span id="tip1"></span>. It’s the most important point the author wants to share. <button onclick="showTip(2)">+</button> <span id="tip2"></span> The other sentences support or give more information about this idea.  <button onclick="showTip(3)">+</button> <span id="tip3"></span></p>
+<div>
+  
+
+</div>
+      <div id="lesson1Progress"></div>
+
+      <h3>Lesson 2</h3>
+      <p>Instructions: Read the paragraph below and choose the best main idea from the options in the multiple choice after.</p>
+      <br> <p> Now let's look at this paragraph on "How to build a table" below. <p> <br></p>
+      <div class="paragraph">
+  <strong>Example: How to Build a Table</strong><br /><br />
+  Building a table requires careful planning and the right materials. 
+  <span class="highlight-box" style="background-color: rgb(255, 164, 255);">The key steps include measuring the wood, cutting it to size, assembling the frame, and securing the legs.</span> 
+  After that, sanding and finishing give the table a smooth and polished look. Whether for beginners or experts, following these steps ensures a sturdy and functional piece of furniture.
+</div>
+      <p>Finding the main idea becomes easier when you use this formula: <br />  Main Idea = Subject + What the writer says about the subject. <br /> <br /> Using the information you have been learning about Summary writing thus far, which of the following is MOST LIKELY TRUE about finding the main idea?</p>
+      <div>
+        <br />
+        <div onclick="checkMC(this, true)" style="background:#eee;padding:10px;margin:5px;cursor:pointer;">A. The main idea is the heart of the paragraph.</div>
+        <div onclick="checkMC(this, false)" style="background:#eee;padding:10px;margin:5px;cursor:pointer;">B. Writers like to use many details.</div>
+        <div onclick="checkMC(this, false)" style="background:#eee;padding:10px;margin:5px;cursor:pointer;">C. Paragraphs can be long or short.</div>
+        <div onclick="checkMC(this, false)" style="background:#eee;padding:10px;margin:5px;cursor:pointer;">D. Subjects are usually interesting.</div>
+      </div>
+      <div id="lesson2Result"></div>
+
+      <h3>Lesson 3</h3>
+
+      <br><p> Welcome to the third lesson on the technique " Finding the Main Idea" in Summary Writing.<br>Read the passage below entitled Abbygayle's Favourite Food. Drag and drop the words that describe the tone of the words highlighted in the passage. </p>
+
+
+  <meta charset="UTF-8" />
+  <title>Lesson 3: Tone Matching</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fc;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #007acc;
+    }
+
+    .tone-example {
+      background-color: #ffffff;
+      padding: 15px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+
+    .drag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .draggable {
+      background-color: #e0e0e0;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: grab;
+      font-weight: bold;
+    }
+
+    .drop-zone {
+      width: 150px;
+      height: 40px;
+      border: 2px dashed #999;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .category {
+      margin-bottom: 15px;
+    }
+
+    .positive { color: limegreen; font-weight: bold; }
+    .negative { color: brown; font-weight: bold; }
+    .neutral { color: gray; font-weight: bold; }
+
+    .feedback {
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 15px;
+    }
+  </style>
+
+  <h4>Lesson 3: Tone Matching – Abbygayle's Favourite Food</h4>
+
+  <div class="tone-example">
+    <p><strong>Example Passage:</strong></p>
+    <p>Abbygayle <strong>dislikes</strong> curry goat and rice and peas with tossed vegetables and roti. While people’s taste in food tend to vary, the opposite might be said of my best friend, Abby-Gayle. My best friend Abbygayle's favourite food is Lasco mackerel and white rice and potato salad. However, if you are talking about me, I <strong>enjoy</strong> stew peas and rice…</p>
+  </div>
+
+  <p><strong>Instructions:</strong> Drag and drop each word into the correct tone category (Positive, Negative, or Neutral).</p>
+
+  <div class="drag-container">
+    <div class="draggable" draggable="true" id="word1">dislike</div>
+    <div class="draggable" draggable="true" id="word2">enjoy</div>
+    <div class="draggable" draggable="true" id="word3">vary</div>
+    <div class="draggable" draggable="true" id="word4">favourite</div>
+  </div>
+
+  <div class="category">
+    <div class="positive">Positive Tone</div>
+    <div class="drop-zone" data-answer="enjoy"></div>
+    <div class="drop-zone" data-answer="favourite"></div>
+  </div>
+
+  <div class="category">
+    <div class="negative">Negative Tone</div>
+    <div class="drop-zone" data-answer="dislike"></div>
+  </div>
+
+  <div class="category">
+    <div class="neutral">Neutral Tone</div>
+    <div class="drop-zone" data-answer="vary"></div>
+  </div>
+
+  <button onclick="checkAnswers()">Submit Answers</button>
+  <div class="feedback" id="feedback"></div>
+
+  <p><strong>Writer's Intention:</strong> This passage shows how tone can reflect personality and preference to help the writer subtly compare people using emotion and word choice.</p>
+
+  <audio id="correctSound" src="https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg"></audio>
+  <audio id="wrongSound" src="https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg"></audio>
+
+  <script>
+    const draggables = document.querySelectorAll('.draggable');
+    const dropZones = document.querySelectorAll('.drop-zone');
+    let attempts = 0;
+
+    draggables.forEach(drag => {
+      drag.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('text/plain', drag.id);
+      });
+    });
+
+    dropZones.forEach(zone => {
+      zone.addEventListener('dragover', e => {
+        e.preventDefault();
+        zone.style.backgroundColor = '#f0f8ff';
+      });
+
+      zone.addEventListener('dragleave', e => {
+        zone.style.backgroundColor = '#fff';
+      });
+
+      zone.addEventListener('drop', e => {
+        e.preventDefault();
+        const draggedId = e.dataTransfer.getData('text/plain');
+        const draggedEl = document.getElementById(draggedId);
+
+        // Allow swapping between drop zones
+        if (zone.children.length > 0) {
+          const existing = zone.children[0];
+          document.querySelector('.drag-container').appendChild(existing);
+        }
+
+        zone.appendChild(draggedEl);
+        zone.style.backgroundColor = '#fff';
+      });
+    });
+
+    function checkAnswers() {
+      let score = 0;
+      dropZones.forEach(zone => {
+        const correct = zone.getAttribute('data-answer');
+        const placed = zone.children[0]?.textContent;
+        if (placed === correct) score++;
+      });
+
+      const feedback = document.getElementById('feedback');
+      const correctSound = document.getElementById('correctSound');
+      const wrongSound = document.getElementById('wrongSound');
+
+      if (score === 4) {
+        feedback.innerText = '✅ Excellent work, you did it! 4/4';
+        feedback.style.color = 'limegreen';
+        correctSound.play();
+      } else {
+        if (attempts === 0) {
+          feedback.innerText = `❌ That's not quite right, try again. ${score}/4`;
+          feedback.style.color = 'brown';
+          attempts++;
+          wrongSound.play();
+        } else {
+          feedback.innerText = `⛔ That's incorrect, do review your notes on this topic or research further.`;
+          feedback.style.color = 'gray';
+          wrongSound.play();
+        }
+      }
+    }
+  </script>
+
+      <br><p> Now look at this final example paragraph below entitled "Homework"<P><br>
+    <div class="paragraph">
+  <strong>Example: The Importance of Doing Homework</strong><br /><br />
+  Homework plays a vital role in reinforcing what students learn in class. 
+  <span class="highlight-box" style="background-color: rgb(226, 145, 145);">It helps students practice independently and strengthens their understanding of the material.</span> 
+  Additionally, homework teaches responsibility, time management, and critical thinking—skills that are essential for academic and personal success.
+</div>
+      <p>Instructions: Use the slider below to explore five key tips about finding the main idea.</p>
+
+
+
+
+  <meta charset="UTF-8" />
+  <title>Interactive Main Idea Wheel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f8fb;
+      font-size: 20px;
+      text-align: left;
+    }
+
+    canvas {
+      border: 2px solid #007acc;
+      border-radius: 50%;
+      margin-top: 20px;
+    }
+
+    /* Cutified & smoother slider styling */
+    input[type="range"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 80%;
+      height: 16px;
+      background: linear-gradient(to right, #99d6ff, #cce6ff);
+      border-radius: 10px;
+      outline: none;
+      transition: box-shadow 0.3s ease-in-out;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+
+    input[type="range"]:hover {
+      box-shadow: 0 0 12px #66ccff;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 40px; /* doubled */
+      height: 40px; /* doubled */
+      background: radial-gradient(circle, #007acc 30%, #005c99 90%);
+      border: 3px solid #fff;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 6px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+      background: radial-gradient(circle, #3399ff 30%, #0066cc 90%);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 40px;
+      height: 40px;
+      background: radial-gradient(circle, #007acc 30%, #005c99 90%);
+      border: 3px solid #fff;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 6px rgba(0,0,0,0.3);
+    }
+
+    #lesson3Tip {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+
+
+  <h4>Lesson 3: Explore Tips with the Wheel</h4>
+
+  <canvas id="wheelCanvas" width="300" height="300"></canvas><br />
+  <input type="range" min="1" max="5" value="1" id="lesson3Slider" oninput="drawWheel(this.value)">
+  <p id="lesson3Tip"></p>
+
+  <div id="lesson3Result"></div>
+
+  <script>
+    function drawWheel(value) {
+      const canvas = document.getElementById("wheelCanvas");
+      const ctx = canvas.getContext("2d");
+      const tips = [
+        "Check the first and last sentence.",
+        "Notice repeated words.",
+        "Examples often support the main idea.",
+        "Ask what the author wants you to learn.",
+        "Summarize the passage in one sentence."
+      ];
+
+      const totalSegments = tips.length;
+      const angle = (2 * Math.PI) / totalSegments;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw segments and tips
+      for (let i = 0; i < totalSegments; i++) {
+        // Segment fill
+        ctx.beginPath();
+        ctx.moveTo(150, 150);
+        ctx.fillStyle = (i < value) ? "#ffffff" : "#ccc";
+        ctx.arc(150, 150, 140, angle * i, angle * (i + 1));
+        ctx.closePath();
+        ctx.fill();
+
+        // Red sector line from center to edge
+        ctx.beginPath();
+        ctx.moveTo(150, 150);
+        ctx.lineTo(
+          150 + Math.cos(angle * i) * 140,
+          150 + Math.sin(angle * i) * 140
+        );
+       ctx.strokeStyle = "#666"; // Gray lines
+        ctx.lineWidth = 3.2;
+        ctx.stroke();
+
+        // Tip text
+        const midAngle = angle * i + angle / 2;
+        const x = 150 + Math.cos(midAngle) * 90;
+        const y = 150 + Math.sin(midAngle) * 90;
+        ctx.fillStyle = "#000";
+        ctx.font = "bold 16px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(i < value ? tips[i].split(" ")[0] + "..." : "", x, y);
+      }
+
+      // Final sector line to close circle
+      ctx.beginPath();
+      ctx.moveTo(150, 150);
+      ctx.lineTo(
+        150 + Math.cos(2 * Math.PI) * 140,
+        150 + Math.sin(2 * Math.PI) * 140
+      );
+      ctx.strokeStyle = "#666"; // Gray lines
+      ctx.lineWidth = 3.2;
+      ctx.stroke();
+
+      document.getElementById("lesson3Tip").innerText = `Tip ${value}: ${tips[value - 1]}`;
+
+      if (parseInt(value) === 5) {
+        document.getElementById("lesson3Result").innerHTML = "<p>✅ You finished all 5 tips!</p>";
+      } else {
+        document.getElementById("lesson3Result").innerHTML = "";
+      }
+    }
+
+    window.onload = () => drawWheel(1);
+  </script>
+
+
+      <div id="lesson3Result"></div>
+        <a href="index.html">← Back to Home</a>
+       
+      <p>Click the button below to go to the next lesson on "Determining the Writer's Intention".</p>
+      <button onclick="window.location.href='technique2.html'">Next Lesson: Writer's Intention</button>
+     <br>
+        <br>
+      <br>
+       <br>
+        <br>
+      <br>
+      <div style="font-size: 28px; font-weight: bold; color: #007acc;"></div>
+       <h2>Technique 2: Determining the Writer's Intention</h2>
+  <p>This page will include lessons and practice for understanding the writer's purpose in summary writing.</p>
+<div style="font-family: 'Times New Roman', Times, serif; font-size: 19.5px; line-height: 1.6;">
+
+  <p><strong>🧠 What Students Need to Know: Writer’s Intention (5 Key Points)</strong></p>
+
+  <p><strong>Purpose Awareness:</strong> Understand why the writer created the text (to inform, persuade, entertain, criticize, explain, etc.).</p>
+
+  <p><strong>Tone and Language:</strong> Analyze the mood and word choice: serious, humorous, sarcastic, emotional?</p>
+
+  <p><strong>Main Focus:</strong> Identify the central message or argument the writer is trying to convey.</p>
+
+  <p><strong>Audience Clues:</strong> Consider who the intended reader is: children, adults, students, professionals?</p>
+
+  <p><strong>Supporting Details:</strong> Recognize which ideas support the intention and which are extra or off-topic.</p>
+
+  <p><strong>📘 Example Passage and Step-by-Step Breakdown</strong></p>
+
+  <p><strong>Passage:</strong></p>
+  <blockquote style="margin: 10px 20px; font-style: italic;">
+    “Many students believe homework is a waste of time. After spending all day in school, they should be allowed to rest or spend time with family. Homework often causes stress and sleep loss. Schools should reconsider how much homework they assign.”
+  </blockquote>
+
+  <p><strong>Step-by-Step to Determine the Writer’s Intention:</strong></p><br><br><br>
+
+  <p><strong>Read Carefully:</strong> Understand what the text says literally.</p>
+
+  <p><strong>Ask: What is the main message?</strong><br>
+  → That homework is harmful and should be reconsidered.</p>
+
+  <p><strong>Look at tone and evidence:</strong><br>
+  → Uses emotional appeals (stress, sleep loss) and speaks strongly against homework.</p>
+
+  <p><strong>Who is being addressed?</strong><br>
+  → Likely teachers, school leaders, and possibly parents.</p>
+
+  <p><strong>Conclusion:</strong><br>
+  → The writer's intention is to <strong>persuade</strong> the reader that homework is harmful and should be reduced.</p>
+
+</div>
+
+
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Strike the Stray</title>
+  <link rel="stylesheet" href="style.css"/>
+
+
+  <div class="game-container">
+    <h1>Game for practice: <div></div>🎯 Strike the Stray</h1>
+    <p class="instruction">Click any sentence that does NOT support the writer’s intention.</p>
+    <div id="passage">
+      <br>
+      <br>
+      <p><b>Title: <u>Students think Homework wastes time but, it may actually be practice.</b></u><br>
+        <br>
+      <p onclick="toggleStrike(this)">Many students believe homework is a waste of time.</p>
+      <p onclick="toggleStrike(this)">The moon has many craters and no atmosphere.</p>
+      <p onclick="toggleStrike(this)">After school, students should be allowed to rest or spend time with family.</p>
+      <p onclick="toggleStrike(this)">Homework often causes stress and sleep loss.</p>
+      <p onclick="toggleStrike(this)">Schools should reconsider how much homework they assign.</p>
+      <p onclick="toggleStrike(this)">Cats make great pets for quiet homes.</p>
+    </div>
+    <button onclick="checkAnswers()">Check</button>
+    <p id="result"></p>
+  </div>
+<br><br>
+
+
+  <h2><p>Technique 3: Removing Repetition</h2><div></div></p>
+<div style="font-family: 'Times New Roman', Times, serif; font-size: 20px; line-height: 1.6;">
+
+  <p><strong>🧠 What Students Need to Know About Removing Repetition in Summary Writing</strong></p>
+
+  <p><strong>✅ Why It’s Important:</strong></p>
+  <ul>
+    <li>Summaries should be short and clear. Repetition takes up space and adds no new meaning.</li>
+    <li>Repeating the same idea with different words can confuse the reader and weaken the main point.</li>
+    <li>Removing repetition shows that you understand the core message and can express it efficiently.</li>
+  </ul>
+
+  <p><strong>✍️ Tips for Removing Repetition:</strong></p>
+  <ol>
+    <li><strong>Identify the main idea first.</strong><br>
+    → Once you know the key message, you can spot when it’s being said again in different ways.</li>
+
+    <li><strong>Look for repeated ideas, not just repeated words.</strong><br>
+    → Example: “Exercise is good for health” and “Working out helps you stay healthy” mean the same thing.</li>
+
+    <li><strong>Choose the clearest sentence and cut the rest.</strong><br>
+    → Keep the version that is shortest, simplest, and most directly supports the main idea.</li>
+
+    <li><strong>Don’t repeat supporting details either.</strong><br>
+    → If two facts or examples prove the same point, keep only one strong one.</li>
+
+    <li><strong>Trust your reader to understand the point once.</strong><br>
+    → Good summarizers give each idea once, clearly, and move on.</li>
+  </ol>
+
+</div>
+
+<div class="repetition-game-section" style="font-family: 'Times New Roman', Times, serif; font-size: 19.5px;">
+  <h2>✂️ Removing Repetition</h2>
+  <p><strong>Instructions:</strong> Click on any sentence that repeats an idea already mentioned. Then click <em>Check</em> to see if you got it right.</p>
+
+  <div id="repetition-passage">
+    <p onclick="toggleStrike(this)">Exercise is important for staying healthy.</p>
+    <p onclick="toggleStrike(this)">Regular physical activity helps people stay in shape.</p>
+    <p onclick="toggleStrike(this)">Eating vegetables is also good for your health.</p>
+    <p onclick="toggleStrike(this)">People who work out often are usually in better shape.</p>
+    <p onclick="toggleStrike(this)">Exercise is important for staying healthy and fit.</p>
+  </div>
+
+  <button onclick="checkRepetitionAnswers()">Check</button>
+  <p id="repetition-result"></p>
+</div>
+
+<script>
+  function toggleStrike(element) {
+    element.classList.toggle("strikethrough");
+  }
+
+  function checkRepetitionAnswers() {
+    const repeatedSentences = [
+      "Regular physical activity helps people stay in shape.",
+      "People who work out often are usually in better shape.",
+      "Exercise is important for staying healthy and fit."
+    ];
+
+    let allCorrect = true;
+    const result = document.getElementById("repetition-result");
+    const sentences = document.querySelectorAll("#repetition-passage p");
+
+    sentences.forEach(p => {
+      const text = p.textContent.trim();
+      const isStruck = p.classList.contains("strikethrough");
+
+      if (repeatedSentences.includes(text) && !isStruck) {
+        allCorrect = false;
+      }
+      if (!repeatedSentences.includes(text) && isStruck) {
+        allCorrect = false;
+      }
+    });
+
+    result.textContent = allCorrect
+      ? "✅ Great job! You removed all the repeated ideas."
+      : "❌ Not quite. Some repeated ideas were missed or wrongly removed.";
+  }
+</script>
+<!-- Technique 4: Removing Examples -->
+<div>
+  <h2> Technique 4 : Removing Examples</h2>
+  <p><strong>Why it matters:</strong> Examples help explain or support a point in the original passage, but they are often too detailed for a summary. Summaries should keep the idea, not the illustration.</p>
+  <p><strong>What students need to know:</strong></p>
+  <ul>
+    <li>Examples (like personal stories, case studies, or specific situations) are there to explain a point—not to be repeated in a summary.</li>
+    <li>If a sentence starts with “for example,” “such as,” or “one case was,” it's likely safe to remove.</li>
+    <li>Focus on the general idea the example supports, and state that instead.</li>
+    <li>If the example helps identify the main idea, keep only the main idea—not the details.</li>
+  </ul>
+  </div>
+<!-- ✂️ Strike-Out Game: Removing Examples -->
+<div style="font-family: 'Times New Roman', Times, serif; font-size: 19.5px; line-height: 1.6; margin-top: 40px;">
+  <h2>✂️ Strike-Out Game: Remove Examples</h2>
+  <p><strong>Instructions:</strong> Click on any sentence that does <em>not</em> belong in a focused summary about the topic of healthy eating.</p>
+
+  <div id="summary-game-paragraph">
+    <p onclick="toggleStrike(this)">Healthy eating involves choosing foods that nourish the body.</p>
+    <p onclick="toggleStrike(this)">Fruits and vegetables provide essential vitamins and fiber.</p>
+    <p onclick="toggleStrike(this)">The Eiffel Tower is one of the most popular tourist attractions in Paris.</p>
+    <p onclick="toggleStrike(this)">Whole grains and lean proteins help build energy and strength.</p>
+    <p onclick="toggleStrike(this)">Some people prefer cats over dogs because they are quieter.</p>
+    <p onclick="toggleStrike(this)">Avoiding too much sugar and processed food supports long-term health.</p>
+  <button onclick="checkSummaryAnswers()">Check</button>
+  <p id="summary-game-result" style="font-weight: bold; margin-top: 10px;"></p>
+</div>
+
+<script>
+  function toggleStrike(element) {
+    element.classList.toggle("strikethrough");
+  }
+
+  function checkSummaryAnswers() {
+    const irrelevantSentences = [
+      "The Eiffel Tower is one of the most popular tourist attractions in Paris.",
+      "Some people prefer cats over dogs because they are quieter."
+    ];
+
+    let allCorrect = true;
+    const result = document.getElementById("summary-game-result");
+    const sentences = document.querySelectorAll("#summary-game-paragraph p");
+
+    sentences.forEach(p => {
+      const text = p.textContent.trim();
+      const isStruck = p.classList.contains("strikethrough");
+
+      if (irrelevantSentences.includes(text) && !isStruck) {
+        allCorrect = false;
+      }
+      if (!irrelevantSentences.includes(text) && isStruck) {
+        allCorrect = false;
+      }
+    });
+
+    result.textContent = allCorrect
+      ? "✅ Great job! You removed all off-topic details."
+      : "❌ Not quite. Try again—some sentences don't belong in a summary about healthy eating.";
+  }
+</script>
+
+</div>
+<br><br>
+<br><br>
+
+<div>
+<br><!-- Technique 5: Removing Statistics -->
+<div>
+  <h2> Technique 5: Removing Statistics</h2>
+  <p><strong>Why it matters:</strong> In a summary, your goal is to capture the central message, not the detailed numbers. Most statistics support the main point but are too specific to include.</p>
+  <p><strong>What students need to know:</strong></p>
+  <ul>
+    <li>Statistics like percentages, years, quantities, and figures are usually supporting evidence—not the main idea.</li>
+    <li>Unless the statistic is essential to understanding the point, leave it out of your summary.</li>
+    <li>Focus on the overall trend or conclusion, not the numbers.</li>
+  </ul>
+
+<!-- 🎯 Strike-Out Game: Removing Statistics -->
+<div style="font-family: 'Times New Roman', Times, serif; font-size: 19.5px; line-height: 1.6; margin-top: 40px;">
+  <h2>🎯 Strike-Out Game: Removing Statistics</h2>
+  <p><strong>Instructions:</strong> Click on the sentences that contain statistics or overly specific data that do not belong in a concise summary.</p>
+
+  <div id="stats-game-paragraph">
+    <p onclick="toggleStrike(this)">Plastic pollution harms marine life and affects food chains.</p>
+    <p onclick="toggleStrike(this)">In 2022, 8.3 billion metric tons of plastic were produced globally.</p>
+    <p onclick="toggleStrike(this)">Many sea animals mistake plastic for food, which can lead to injury or death.</p>
+    <p onclick="toggleStrike(this)">About 91% of all plastic is never recycled.</p>
+    <p onclick="toggleStrike(this)">Plastic debris has been found in 100% of tested ocean samples from the Pacific.</p>
+    <p onclick="toggleStrike(this)">Governments and communities are encouraging people to reduce plastic use.</p>
+  </div>
+
+  <button onclick="checkStatAnswers()">Check</button>
+  <p id="stats-game-result" style="font-weight: bold; margin-top: 10px;"></p>
+</div>
+
+<script>
+  function toggleStrike(element) {
+    element.classList.toggle("strikethrough");
+  }
+
+  function checkStatAnswers() {
+    const statsToRemove = [
+      "In 2022, 8.3 billion metric tons of plastic were produced globally.",
+      "About 91% of all plastic is never recycled.",
+      "Plastic debris has been found in 100% of tested ocean samples from the Pacific."
+    ];
+
+    let allCorrect = true;
+    const result = document.getElementById("stats-game-result");
+    const sentences = document.querySelectorAll("#stats-game-paragraph p");
+
+    sentences.forEach(p => {
+      const text = p.textContent.trim();
+      const isStruck = p.classList.contains("strikethrough");
+
+      if (statsToRemove.includes(text) && !isStruck) {
+        allCorrect = false;
+      }
+      if (!statsToRemove.includes(text) && isStruck) {
+        allCorrect = false;
+      }
+    });
+
+    result.textContent = allCorrect
+      ? "✅ Great job! You removed all the overly specific statistics."
+      : "❌ Not quite. Some statistics were missed or wrongly struck through.";
+  }
+</script>
+
+<style>
+  /* Scoped to this game only */
+  #stats-game-paragraph p {
+    cursor: pointer;
+    margin: 10px 0;
+    transition: background-color 0.3s;
+  }
+
+  #stats-game-paragraph p:hover {
+    background-color: #eef;
+  }
+
+  .strikethrough {
+    text-decoration: line-through;
+    color: #888;
+  }
+
+  button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+<style>
+  /* Only affects this strike-out game */
+  #summary-game-paragraph p {
+    cursor: pointer;
+    margin: 10px 0;
+    transition: background-color 0.3s;
+  }
+
+  #summary-game-paragraph p:hover {
+    background-color: #eef;
+  }
+
+  .strikethrough {
+    text-decoration: line-through;
+    color: #888;
+  }
+
+  button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+</style>
+<br><br>
+<br><br>
+<!-- Technique 6: Using Concise Language -->
+<div>
+  <h2> Technique 6: Using Concise Language</h2>
+  <p><strong>Why it matters:</strong> A summary should be clear, brief, and direct. Long or wordy sentences slow down the reader and add unnecessary detail.</p>
+  <p><strong>What students need to know:</strong></p>
+  <ul>
+    <li>Use fewer words to say the same thing. Choose strong, precise vocabulary.</li>
+    <li>Avoid repeating ideas or using fillers like “it is important to note that...”</li>
+    <li>Combine or rephrase long sentences to make them shorter without losing meaning.</li>
+  </ul>
+</div>
+<br>
+<br>
+<!-- 📝 Example Paragraph (Using Wordy Phrases) -->
+<div style="font-family: 'Times New Roman', Times, serif; font-size: 18px; margin-bottom: 20px;">
+  <h3>📝 Example Paragraph</h3>
+  <p>
+    At this point in time, many schools are considering changes to their schedules due to the fact that students are showing signs of stress. In order to improve well-being, administrators are exploring options like shorter school days and longer lunch breaks.
+  </p>
+  <p><strong>Can you break the bricks that contain the wordy phrases from this paragraph?</strong></p>
+</div>
+
+
+ <!-- 🎮 Concise Language: Break the Wordy Phrases Game (Win After 3 Launches) -->
+<div style="font-family: 'Times New Roman', Times, serif; font-size: 18px; margin-top: 50px;">
+  <h2>🎯 Game: Break the Wordy Phrases!</h2>
+  <p><strong>Instructions:</strong> Use the left (←) and right (→) arrow keys to move the paddle. Hit the ball into the wordy phrases to break them. You win after 3 ball launches!</p>
+
+  <canvas id="conciseGameCanvas" width="500" height="300" style="border: 2px solid #888; background-color: #f4f4f4;"></canvas>
+
+  <div id="winMessage" style="display: none; font-size: 24px; color: green; font-weight: bold; margin-top: 20px;">
+    🎉 Congratulations, you have won the game!
+  </div>
+</div>
+
+<script>
+  const canvas = document.getElementById("conciseGameCanvas");
+  const ctx = canvas.getContext("2d");
+  const winMessage = document.getElementById("winMessage");
+
+  // Ball
+  let x = canvas.width / 2;
+  let y = canvas.height - 185;
+  let dx = 2;
+  let dy = -2;
+  const ballRadius = 8;
+
+  // Paddle
+  const paddleHeight = 10;
+  const paddleWidth = 80;
+  let paddleX = (canvas.width - paddleWidth) / 2;
+
+  let rightPressed = false;
+  let leftPressed = false;
+
+  // Brick Setup
+  const brickWidth = 140;
+  const brickHeight = 30;
+  const brickPadding = 10;
+  const brickOffsetTop = 75;
+  const brickOffsetLeft = 30;
+  const brickLabels = ["at this point in time", "due to the fact that", "in order to"];
+  const bricks = [];
+
+  for (let c = 0; c < brickLabels.length; c++) {
+    bricks[c] = {
+      x: (c * (brickWidth + brickPadding)) + brickOffsetLeft,
+      y: brickOffsetTop,
+      status: 1,
+      label: brickLabels[c]
+    };
+  }
+
+  // Count launches
+  let launches = 0;
+  let gameOver = false;
+
+  // Keyboard control
+  document.addEventListener("keydown", e => {
+    if (e.key === "Right" || e.key === "ArrowRight") rightPressed = true;
+    if (e.key === "Left" || e.key === "ArrowLeft") leftPressed = true;
+  });
+
+  document.addEventListener("keyup", e => {
+    if (e.key === "Right" || e.key === "ArrowRight") rightPressed = false;
+    if (e.key === "Left" || e.key === "ArrowLeft") leftPressed = false;
+  });
+
+  function collisionDetection() {
+    bricks.forEach(brick => {
+      if (brick.status === 1) {
+        if (
+          x > brick.x &&
+          x < brick.x + brickWidth &&
+          y > brick.y &&
+          y < brick.y + brickHeight
+        ) {
+          dy = -dy;
+          brick.status = 0;
+        }
+      }
+    });
+  }
+
+  function drawBall() {
+    ctx.beginPath();
+    ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+    ctx.fillStyle = "#000";
+    ctx.fill();
+    ctx.closePath();
+  }
+
+  function drawPaddle() {
+    ctx.beginPath();
+    ctx.rect(paddleX, canvas.height - paddleHeight - 5, paddleWidth, paddleHeight);
+    ctx.fillStyle = "#444";
+    ctx.fill();
+    ctx.closePath();
+  }
+
+  function drawBricks() {
+    bricks.forEach(brick => {
+      if (brick.status === 1) {
+        ctx.beginPath();
+        ctx.rect(brick.x, brick.y, brickWidth, brickHeight);
+        ctx.fillStyle = "#d9534f";
+        ctx.fill();
+        ctx.fillStyle = "#fff";
+        ctx.font = "12px Times New Roman";
+        ctx.fillText(brick.label, brick.x + 5, brick.y + 18);
+        ctx.closePath();
+      }
+    });
+  }
+
+  let animationId;
+
+  function draw() {
+    if (gameOver) return;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBricks();
+    drawBall();
+    drawPaddle();
+    collisionDetection();
+
+    // Wall bounce
+    if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) dx = -dx;
+    if (y + dy < ballRadius) dy = -dy;
+    
+
+    // Paddle bounce or miss
+    if (y + dy > canvas.height - paddleHeight - 5) {
+      if (x > paddleX && x < paddleX + paddleWidth) {
+        dy = -dy;
+      } else {
+        launches++;
+        if (launches >= 3) {
+  gameOver = true;
+  // Delay message so canvas redraws first
+  setTimeout(() => {
+    winMessage.style.display = "block";
+  }, 50); // 10ms = one frame
+  cancelAnimationFrame(animationId);
+}
+
+        // Reset ball and paddle
+        x = canvas.width / 2;
+        y = canvas.height - 210;
+        dx = 2;
+        dy = -2;
+        paddleX = (canvas.width - paddleWidth) / 2;
+      }
+    }
+
+    x += dx;
+    y += dy;
+
+    if (rightPressed && paddleX < canvas.width - paddleWidth) {
+      paddleX += 5;
+    } else if (leftPressed && paddleX > 0) {
+      paddleX -= 5;
+    }
+
+    animationId = requestAnimationFrame(draw);
+  }
+
+  draw();
+</script>
+
+
+<br><br>
+<br><br>
+
+<!-- Technique 7: Combining Main Ideas to Form a Summary -->
+  <h2> Technique 7: Combining Main Ideas to Form a Summary</h2>
+  <p><strong>Why it matters:</strong> A good summary isn't just a list—it flows. You must connect key points to show the overall message of the passage.</p>
+  <p><strong>What students need to know:</strong></p>
+  <ul>
+    <li>After identifying main ideas in each paragraph, group similar ones together.</li>
+    <li>Use transition words (like "also," "however," or "as a result") to link ideas logically.</li>
+    <li>Your final summary should feel like one clear explanation, not just separate facts.</li>
+  </ul>
+</div>
+<div id="idea-runner-wrapper" style="position: relative; width: 100%; max-width: 600px; margin: auto;">
+  <canvas id="ideaRunnerCanvas" width="600" height="400" style="border:1px solid #000;"></canvas>
+
+  <div id="ideaRunnerPrompt" style="
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border: 2px solid black;
+    font-family: Arial, sans-serif;
+    display: none;
+    z-index: 999;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 0 10px #333;
+  ">
+    <h3 style="margin-top: 0;">Combine the 3 ideas:</h3>
+    <p id="ideaRunnerIdeas" style="white-space: pre-line;"></p>
+    <textarea id="ideaRunnerInput" placeholder="Write your combined idea here..." style="width: 100%; height: 60px;"></textarea>
+    <br><br>
+    <button onclick="submitRunnerIdea()">Submit</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const canvas = document.getElementById("ideaRunnerCanvas");
+  const ctx = canvas.getContext("2d");
+
+  const player = { x: 280, y: 350, width: 40, height: 40, speed: 5 };
+  const tokens = [];
+  const tokenTypes = [
+    "Dogs are loyal animals.",
+    "Dogs help with therapy.",
+    "Dogs can be trained easily.",
+    "Reading boosts vocabulary.",
+    "Reading reduces stress.",
+    "Reading helps brain development.",
+    "Exercise builds strength.",
+    "Exercise improves mood.",
+    "Exercise boosts energy."
+  ];
+  let collected = [];
+  let animationId;
+
+ function drawPlayer() {
+  const emoji = "🏃🏾‍♂️‍➡️";
+  ctx.font = "48px Arial"; // adjust size here
+  ctx.textAlign = "left";
+  ctx.textBaseline = "top";
+  ctx.fillText(emoji, player.x, player.y);
+}
+
+  function drawToken(token) {
+    ctx.fillStyle = "green";
+    ctx.beginPath();
+    ctx.arc(token.x, token.y, token.radius, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "black";
+    ctx.font = "10px Arial";
+    ctx.fillText("Idea", token.x - 10, token.y + 20);
+  }
+
+  function spawnToken() {
+    if (Math.random() < 0.02 && tokens.length < 5) {
+      const text = tokenTypes[Math.floor(Math.random() * tokenTypes.length)];
+      tokens.push({ x: Math.random() * 550 + 25, y: 0, radius: 15, text });
+    }
+  }
+
+  function updateTokens() {
+    tokens.forEach(token => token.y += 2);
+    for (let i = tokens.length - 1; i >= 0; i--) {
+      if (tokens[i].y > canvas.height) tokens.splice(i, 1);
+    }
+  }
+
+  function checkCollisions() {
+    for (let i = tokens.length - 1; i >= 0; i--) {
+      const token = tokens[i];
+      const dx = player.x + 24 - token.x; // 24 is half of approx. 48px font width
+const dy = player.y + 24 - token.y;
+function updateTokens() {
+  tokens.forEach(token => token.x -= 2); // move left
+  for (let i = tokens.length - 1; i >= 0; i--) {
+    if (tokens[i].x < -tokens[i].radius) tokens.splice(i, 1);
+  }
+}
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance < token.radius + player.width / 2) {
+        collected.push(token.text);
+        tokens.splice(i, 1);
+        if (collected.length === 3) {
+          showPrompt();
+        }
+      }
+    }
+  }
+
+  function showPrompt() {
+    cancelAnimationFrame(animationId);
+    document.getElementById("ideaRunnerPrompt").style.display = "block";
+    document.getElementById("ideaRunnerIdeas").innerText = collected.map((i, idx) => `${idx + 1}. ${i}`).join("\n");
+  }
+
+  window.submitRunnerIdea = function() {
+    const idea = document.getElementById("ideaRunnerInput").value.trim();
+    if (!idea) {
+      alert("Please write your combined idea.");
+      return;
+    }
+    alert("Your combined idea:\n\n" + idea);
+    collected = [];
+    document.getElementById("ideaRunnerInput").value = "";
+    document.getElementById("ideaRunnerPrompt").style.display = "none";
+    gameLoop();
+  }
+
+  function gameLoop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawPlayer();
+    spawnToken();
+    updateTokens();
+    tokens.forEach(drawToken);
+    checkCollisions();
+    animationId = requestAnimationFrame(gameLoop);
+  }
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft" && player.x > 0) player.x -= player.speed;
+    if (e.key === "ArrowRight" && player.x + player.width < canvas.width) player.x += player.speed;
+  });
+
+  gameLoop();
+})();
+</script>
+<style>
+  /* Only affects the game section */
+  .repetition-game-section #repetition-passage p {
+    cursor: pointer;
+    margin: 10px 0;
+    transition: background-color 0.3s;
+  }
+
+  .repetition-game-section #repetition-passage p:hover {
+    background-color: #f0f8ff;
+  }
+
+  .strikethrough {
+    text-decoration: line-through;
+    color: #888;
+  }
+
+  .repetition-game-section button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .repetition-game-section #repetition-result {
+    margin-top: 15px;
+    font-weight: bold;
+  }
+</style>
+  <br></b>
+  <script src="script.js"></script>
+
+
+  <a href="index.html">← Back to Home</a>
+
+
+    </div>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Technique 2: Determining the Writer's Intention</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+  </style>
+
+
+
+    
+
