@@ -1,1 +1,1 @@
-alert("Welcome to my learning website!");
+alert("Welcome!"Click START);
