@@ -202,25 +202,31 @@ button.optionBtn:hover {
   box-shadow: 0 0 12px #7700ff;
 }
 
-/* ⏭️ Controls — bigger next/same buttons */
-#controls {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+#controls button {
+  background-color: linear-gradient(90deg, #0055ff, #7700ff);
+  border: 1px solid #7700ff; /* same purple border */
+  color: #0b0218; /* purple text */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  /* Keep original small padding or override if needed */
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  border-radius: 8px;
 }
 
-#controls button {
-  background: linear-gradient(90deg, #0055ff, #7700ff);
-  border: none;
-  border-radius: 20px;
-  padding: 12px 26px;
-  color: white;
-  font-weight: 700;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: box-shadow 0.3s ease;
+#controls button:hover:not(:disabled) {
+  background-color: #7700ff;
+  color: rgb(0, 3, 5);
 }
+
+#controls button:disabled {
+  background-color:  linear-gradient(90deg, #5ebde2, #00ffea);
+  color: #bbb;
+  cursor: not-allowed;
+  border-color: #555;
+  box-shadow: none;
+}
+
 /* Add this inside your existing <style> in <head> */
 #feedbackList {
   max-height: 400px;
@@ -228,7 +234,7 @@ button.optionBtn:hover {
   padding-right: 8px;
 }
 .feedbackItem.correct {
-  background-color: #e6ffe6;
+  background-color: #044404;
 }
 .feedbackItem.incorrect {
   background-color: #ffe6e6;
@@ -566,48 +572,59 @@ function generateQuestionsBank() {
       progressBarFill.style.width = `${percent}%`;
     }
 
-    // Button event listeners
-    backBtn.addEventListener('click', () => {
-      if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        renderQuestion();
-        updateControls();
-      }
-    });
-    nextBtn.addEventListener('click', () => {
-      if (currentQuestionIndex < selectedQuestions.length - 1 && userAnswers[selectedQuestions[currentQuestionIndex].id] !== undefined) {
-        currentQuestionIndex++;
-        renderQuestion();
-        updateControls();
-      }
-    });
-    resetBtn.addEventListener('click', () => {
-      if (confirm('Reset all your answers and restart the quiz?')) {
-        userAnswers = {};
-        currentQuestionIndex = 0;
-        renderQuestion();
-        updateControls();
-        updateProgressBar();
-      }
-    });
-    saveBtn.addEventListener('click', () => {
-      // Save current progress in sessionStorage
-      saveProgress();
-      alert('Progress saved!');
-    });
+ function addTapListener(element, handler) {
+  element.addEventListener('click', handler);
+  element.addEventListener('touchstart', (e) => {
+    e.preventDefault();  // Prevents the simulated mouse event after touch
+    handler(e);
+  });
+}
 
-    submitBtn.addEventListener('click', () => {
-      if (!navigator.onLine) {
-        alert('You need to be online to submit your quiz. Please check your connection and try again.');
-        return;
-      }
-      if (Object.keys(userAnswers).length < selectedQuestions.length) {
-        if (!confirm('Some questions are unanswered. Submit anyway?')) return;
-      }
-      // Hide quiz, show results
-      quizContainer.style.display = 'none';
-      showResults();
-      resultScreen.style.display = 'block';
+// Replace your existing button event listeners with this helper
+
+addTapListener(backBtn, () => {
+  if (currentQuestionIndex > 0) {
+    currentQuestionIndex--;
+    renderQuestion();
+    updateControls();
+  }
+});
+
+addTapListener(nextBtn, () => {
+  if (currentQuestionIndex < selectedQuestions.length - 1 && userAnswers[selectedQuestions[currentQuestionIndex].id] !== undefined) {
+    currentQuestionIndex++;
+    renderQuestion();
+    updateControls();
+  }
+});
+
+addTapListener(resetBtn, () => {
+  if (confirm('Reset all your answers and restart the quiz?')) {
+    userAnswers = {};
+    currentQuestionIndex = 0;
+    renderQuestion();
+    updateControls();
+    updateProgressBar();
+  }
+});
+
+addTapListener(saveBtn, () => {
+  saveProgress();
+  alert('Progress saved!');
+});
+
+addTapListener(submitBtn, () => {
+  if (!navigator.onLine) {
+    alert('You need to be online to submit your quiz. Please check your connection and try again.');
+    return;
+  }
+  if (Object.keys(userAnswers).length < selectedQuestions.length) {
+    if (!confirm('Some questions are unanswered. Submit anyway?')) return;
+  }
+  quizContainer.style.display = 'none';
+  showResults();
+  resultScreen.style.display = 'block';
+
     });
 
     // Save progress to sessionStorage
